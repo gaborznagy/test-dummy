@@ -5,7 +5,7 @@ name: test-schedule
 on:
   push:
   schedule:
-    - cron: '29 15 * * *'
+    - cron: '10 10 * * *'
 
 
 jobs:
@@ -14,4 +14,4 @@ jobs:
     steps:
       - name: dumy echo
         run: |
-          echo "Dummy job is triggered ${{github.event}}"
+          echo "Dummy job is triggered ${{github.event_name}}"
