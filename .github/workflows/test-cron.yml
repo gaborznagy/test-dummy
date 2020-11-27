@@ -3,6 +3,7 @@
 name: test-schedule
 
 on:
+  push:
   schedule:
     - cron: '29 15 * * *'
 
