@@ -1,0 +1,16 @@
+#
+
+name: test-schedule
+
+on:
+  schedule:
+    - cron: '29 15 * * *'
+
+
+jobs:
+  dummy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: dumy echo
+        run: |
+          echo "Dummy job is triggered ${{github.event}}"
