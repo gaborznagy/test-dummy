@@ -1,17 +1,21 @@
 #
-
-name: test-schedule
+name: Test Fedora install
 
 on:
   push:
+  workflow_dispatch:
   schedule:
-    - cron: '10 10 * * *'
+    - cron: '03/15 02-03 * * *'
 
 
 jobs:
-  dummy:
+  test-install-on-fedora:
     runs-on: ubuntu-latest
     steps:
-      - name: dumy echo
+      - name: Checkout source code     
+        uses: actions/checkout@v2     
+
+      - name: install
         run: |
-          echo "Dummy job is triggered ${{github.event_name}}"
+          docker build --network=host -t test-fedora-33:latest -f fedora-33.dockerfile .
+          
