@@ -1,21 +1,27 @@
-#
 name: Test Fedora install
 
 on:
   push:
   workflow_dispatch:
   schedule:
-    - cron: '03/15 02-03 * * *'
+    - cron: '*/15 * * * *'
 
 
 jobs:
   test-install-on-fedora:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout source code     
-        uses: actions/checkout@v2     
+      - name: Checkout source code
+        uses: actions/checkout@v2
 
-      - name: install
+      - name: test
         run: |
-          docker build --network=host -t test-fedora-33:latest -f fedora-33.dockerfile .
-          
+          docker run -v $PWD:/test/ fedora:33 /test/test.sh
+
+      - name: "Upload artifacts.tar.gz"
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: artifacts.tar.gz
+          path: ${{ github.workspace }}/artifacts.tar.gz
+
