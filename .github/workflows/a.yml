@@ -1,0 +1,11 @@
+name: Test concurrent workflow_call (A user)
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  call_body:
+    uses: ./.github/workflows/do-something.yml
+    with:
+      user: A

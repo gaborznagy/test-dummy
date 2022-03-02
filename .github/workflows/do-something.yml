@@ -1,0 +1,20 @@
+name: I will do something for those who ask
+
+on:
+  workflow_call:
+    inputs:
+      user:
+        required: true
+        type: string
+
+jobs:
+  do_something:
+    runs-on: ubuntu-latest
+    steps:
+      - name: take some time
+        run: |
+          apt update
+          sleep 15
+      - name: just echo
+        run: |
+          echo "This is who called me: ${{ inputs.user }}"
